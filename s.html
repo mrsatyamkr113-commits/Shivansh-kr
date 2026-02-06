@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I Am Really Sorry Babu 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --accent: #ff0a54;
+    --soft-pink: #ff85a1;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: #050505;
+    color: #fff;
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* Background Glow Cursor Effect */
+.bg-glow {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255, 10, 84, 0.15) 0%, transparent 60%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* --- PAGE 1 BACKGROUND --- */
+#page1 {
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('ba35b65db70c98f2888e83bba6c3fcac.jpg'); 
+    background-size: cover;
+    background-position: center;
+}
+
+/* --- PAGE 4 BACKGROUND --- */
+#page4 {
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('b196249ea94aa399b654d2ff7cae53da.jpg'); 
+    background-size: cover;
+    background-position: center;
+}
+
+/* Transparent Boxes for Page 1 & Page 4 */
+#page1 .content-box, #page4 .content-box {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Shadow for text readability on Page 1 & 4 */
+#page1 h1, #page1 p, #page4 h1, #page4 p {
+    text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
+}
+
+/* --- GENERAL PAGE STYLING --- */
+.page {
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 10;
+}
+
+.page.active {
+    display: flex;
+    animation: slideIn 1s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+@keyframes slideIn {
+    0% { opacity: 0; transform: translateY(30px) scale(0.95); filter: blur(10px); }
+    100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+
+.content-box {
+    max-width: 600px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 50px 30px;
+    border-radius: 40px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+    position: relative;
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #fff 30%, var(--soft-pink) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+}
+
+p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.btn-premium {
+    background: linear-gradient(45deg, var(--accent), var(--soft-pink));
+    color: #fff;
+    border: none;
+    padding: 16px 40px;
+    border-radius: 100px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-transform: uppercase;
+}
+
+.btn-premium:hover {
+    transform: scale(1.05) translateY(-3px);
+    box-shadow: 0 15px 30px rgba(255, 10, 84, 0.4);
+}
+
+.floating-obj {
+    position: absolute;
+    pointer-events: none;
+    z-index: 5;
+    animation: fallAnimation linear forwards;
+}
+
+@keyframes fallAnimation {
+    0% { transform: translateY(-10vh) rotate(0); opacity: 0; }
+    20% { opacity: 1; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+.moon {
+    width: 160px; height: 160px;
+    background: radial-gradient(circle at 30% 30%, #fff, #fdfd96);
+    border-radius: 50%;
+    box-shadow: 0 0 80px rgba(253, 253, 150, 0.4);
+    position: absolute;
+    top: 5%; left: 50%;
+    transform: translateX(-50%);
+    animation: moonFloat 10s infinite alternate ease-in-out;
+    z-index: -1;
+}
+@keyframes moonFloat { to { transform: translate(-50%, 20px); } }
+
+/* No/Yes Buttons Layout */
+.btn-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+    height: 150px;
+    position: relative;
+}
+
+#noBtn {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    position: absolute; /* Needed for moveNo function */
+}
+
+.hug-img { width: 250px; border-radius: 20px; margin-bottom: 20px; }
+
+</style>
+</head>
+
+<body>
+<div class="bg-glow" id="glow"></div>
+
+<audio id="sorrySong" src="Dagabaaz_Re__LYRICS__-__Dabangg_2___Lyrical_Bam_Hindi(256k).mp3" loop></audio>
+
+<div class="page active" id="page1">
+    <div class="content-box">
+        <h1>BABUUU...</h1>
+        <p>YE KUCH CHOTI SI KOSHISH HAI AAPKE LIYE, SIRF YE BATANE KE LIYE KI AAP KITNI SPECIAL HO MERE LIYE.</p>
+        <button class="btn-premium" onclick="startExperience()">DEKHO ISE ✨</button>
+    </div>
+</div>
+
+<div class="page" id="page2">
+    <div class="content-box">
+        <h1>I'M SORRY BUBUU... 🥺</h1>
+        <p>BUBUUUU SORRY, MUJHE PATA HAI MAINE BAHUT HURT KIYA HAI. MERI GALTI HAI SOLLY 😭😭😭.</p>
+        <button class="btn-premium" onclick="showPage(3)">AAGE SUNO...</button>
+    </div>
+</div>
+
+<div class="page" id="page3">
+    <div class="moon"></div>
+    <div class="content-box">
+        <h1>MAAF KAR DO NA?</h1>
+        <p>GALTI INSAAN SE HI HOTI HAI... BABUUU SORRY MAAF KR DO GALTI INNSAN SE HI HOTA HAI AI THODI HU JO GALTI NHI KRUNGA, INNSAN HI HU NA GUSSA AAJATA HAI NATURAL HAI YE SUB. AASIA TO NHI HAI KI MAI GUSSSA KAR JE MANATA NHI HU ITTNA PAYAR BHI TO KARTA HU 😭😭😭😭, SORRY PLEASE MAAF KAR DO MAI BHI BAHUT GUILTY FEEL KAR RHA HU.</p>
+        <button class="btn-premium" onclick="showPage(4)">PLEASE? 🥺</button>
+    </div>
+</div>
+
+<div class="page" id="page4">
+    <div class="content-box">
+        <h1>MAAF KAR DIYA NA? ❤️</h1>
+        <p>DIL SE BOLNA KI MAAF KIYA YA NHI?</p>
+        <div class="btn-container">
+            <button class="btn-premium" id="yesBtn" onclick="showPage(5)">HAA ✅</button>
+            <button class="btn-premium" id="noBtn" onmouseover="moveNo()" onclick="moveNo()">NAA ❌</button>
+        </div>
+    </div>
+</div>
+
+<div class="page" id="page5">
+    <div class="content-box">
+        <h1>DIL SE SORRY...</h1>
+        <p>YE SIRF EK WORD NAHI HAI, YE MERI FEELINGS HAIN. MAIN WADA KARTA HOON KI PHIR SE AAPKO KABHI DUKH NA PAHUNCHE.</p>
+        <button class="btn-premium" onclick="showPage(6)">ONE LAST THING ➔</button>
+    </div>
+</div>
+
+<div class="page" id="page6">
+    <div class="content-box">
+        <img class="hug-img" src="hug.gif" alt="Virtual Hug">
+        <h1 style="font-size:2rem; margin-top:10px;">AB JALDI SE CHAT ME AAO!</h1>
+        <p>BABU, AB AUR WAIT NAHI HOTA. JALDI SE AAO AUR APNE BABU KO MAAF KAR DO! 🏃‍♂️💨</p>
+    </div>
+</div>
+
+<script>
+function startExperience() {
+    const music = document.getElementById('sorrySong');
+    music.play().catch(e => console.log("Music play blocked by browser. Click again!"));
+    showPage(2);
+}
+
+window.addEventListener('mousemove', (e) => {
+    document.getElementById('glow').style.setProperty('--x', e.clientX + 'px');
+    document.getElementById('glow').style.setProperty('--y', e.clientY + 'px');
+});
+
+function showPage(n) {
+    document.querySelectorAll('.floating-obj').forEach(e => e.remove());
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const page = document.getElementById('page' + n);
+    page.classList.add('active');
+
+    let items = [], count = 0;
+    if(n === 1) { items = ['🤍', '🌸', '🌷']; count = 15; }
+    if(n === 2) { items = ['🍫', '❤️', '💝']; count = 20; }
+    if(n === 3) { items = ['✨', '🌙', '⭐']; count = 10; }
+    if(n === 4) { items = ['🌸', '🌷', '🍫', '❤️']; count = 25; }
+    if(n === 5) { items = ['💖', '✨', '⭐']; count = 25; }
+    if(n === 6) { items = ['✨', '❤️', '💝']; count = 15; }
+    spawn(page, items, count);
+
+    // Reset No button position if entering page 4
+    if(n === 4) {
+        const btn = document.getElementById('noBtn');
+        btn.style.position = 'static';
+    }
+}
+
+function spawn(container, items, count) {
+    for(let i = 0; i < count; i++) {
+        setTimeout(() => {
+            if(!container.classList.contains('active')) return;
+            let el = document.createElement('div');
+            el.className = 'floating-obj';
+            el.innerText = items[Math.floor(Math.random() * items.length)];
+            el.style.left = Math.random() * 100 + 'vw';
+            el.style.fontSize = 25 + Math.random() * 20 + 'px';
+            el.style.animationDuration = 3 + Math.random() * 3 + 's';
+            container.appendChild(el);
+            setTimeout(() => el.remove(), 6000);
+        }, i * 250);
+    }
+}
+
+function moveNo() {
+    const btn = document.getElementById('noBtn');
+    btn.style.position = 'fixed';
+    const maxX = window.innerWidth - 150;
+    const maxY = window.innerHeight - 80;
+    btn.style.left = Math.random() * maxX + 'px';
+    btn.style.top = Math.random() * maxY + 'px';
+    btn.style.zIndex = "1000";
+}
+
+window.onload = () => showPage(1);
+</script>
+</body>
+</html>
